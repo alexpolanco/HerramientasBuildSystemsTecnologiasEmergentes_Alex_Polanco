@@ -1,0 +1,34 @@
+barra-superior{
+  border-radius: 0 0 5px 5px;
+}
+.container{
+  width: 100%;
+  height: 3em;
+  background-color: #e6e6e6;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.logo-container{
+  width: 10%;
+}
+.menu{
+  width: 50%;
+}
+.menu ul{
+  display: flex;
+  flex-flow: row nowrap;
+  /*justify-content: space-around;*/
+  float: right;
+  list-style: none;
+  padding-top: 1em;
+}
+.menu ul li{
+  /*color: #696969;*/
+  padding: 0 1em;
+}
+.menu ul li a,.logo-container a{
+  color: #666;
+}

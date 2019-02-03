@@ -1,0 +1,15 @@
+h3, label{
+  color: white;
+}
+label{
+  float: left;
+  width: 100%;
+  text-align: left;
+  font-weight: 600;
+}
+input.ng-invalid.ng-touched{
+  border: 1px solid red;
+}
+.error{
+  color: red;
+}
