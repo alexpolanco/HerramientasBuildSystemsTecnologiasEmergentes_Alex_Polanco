@@ -1,4 +1,47 @@
 <barra-superior></barra-superior>
-<p>
-  productos works!
-</p>
+<div class="card" style="margin-top:1em">
+  <div class="container">
+    <!-- Stack the columns on mobile by making one full-width and the other half-width -->
+    <div class="row">
+      <div class="col-12 col-md-8"><h2 class="mt-4">Cátalogo de productos</h2></div>
+      <div class="col-6 col-md-4">
+        <form (ngSubmit)="buscarProducto()" name="formBuscar" method="post" [formGroup]="formBuscar" class="mt-3">
+          <div class="form-group">
+            <label for="buscador" class="h5 mb-2 font-weight-normal">¿Qué estas buscando?</label>
+            <input type="text" formControlName="buscador" id="buscador" class="form-control" placeholder="Buscar producto" required autofocus />
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <hr class="" />
+    <button (click)="onUpdate()" class="btn btn-default">Actualizar</button>
+
+    <div class="row">
+      <div class="col-7 col-md-3" *ngFor="let item of productos;let i = index" style="{{i!=0 ? 'display:none' : 'display:block'}}" >
+
+        <div class="card" *ngIf="i!=0">
+          <img class="card-img-top" src="{{item.imagen}}" alt="{{item.nombre}}">
+          <div class="card-body">
+            <h5 class="card-title">{{item.nombre}}</h5>
+            <p class="card-text"><strong>Precio:</strong> $ {{item.precio}}</p>
+            <p class="card-text"><strong>Unidades disponibles:</strong> {{item.unidad}}</p>
+          </div>
+          <div class="card-footer">
+            <div class="row">
+            	<div class="col">
+                <button type="button" name="verMas" class="btn btn-info btn-sm">Ver Más</button>
+              </div>
+              <div class="col">
+                <button type="button" name="agregar" class="btn btn-warning btn-sm">Añadir</button>
+              </div>
+              <div class="col">
+                <input type="number" name="cantidad" class="form-control btn-sm" value="1">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

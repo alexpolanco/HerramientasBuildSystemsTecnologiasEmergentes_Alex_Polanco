@@ -1,9 +1,17 @@
 @import "~font-awesome/css/font-awesome.css";
-body{
-  background-color: red
+figure{
+    margin: 0;
 }
-
-.flash-message{
-    z-index: 10000;
-    position: relative;
+.navbar{
+  border-radius: 0 0 5px 5px;
+}
+.bg{
+  position: fixed;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  min-height: 100%;
+}
+.fa{
+  color: gray;
 }

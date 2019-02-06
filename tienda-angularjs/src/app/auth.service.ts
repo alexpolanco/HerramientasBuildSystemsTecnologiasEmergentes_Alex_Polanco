@@ -6,7 +6,7 @@ import * as firebase from 'firebase/app';
 import { Observable } from 'rxjs';
 
 @Injectable({
-    providedIn: 'root' 
+    providedIn: 'root'
 })
 export class AuthService {
 
@@ -20,7 +20,7 @@ export class AuthService {
         (usuario) => {
           if (usuario) {
             this.detalleUsuario = usuario;
-            console.log(this.detalleUsuario);
+            //console.log(this.detalleUsuario);
           }
           else {
             this.detalleUsuario = null;
@@ -31,13 +31,7 @@ export class AuthService {
 
   iniciarSesion(email, password) {
     const credential = firebase.auth.EmailAuthProvider.credential( email, password );
-    return this._firebaseAuth.auth.signInWithEmailAndPassword(email, password)
-  }
-
-  iniciarSesionConGoogle() {
-    return this._firebaseAuth.auth.signInWithPopup(
-      new firebase.auth.GoogleAuthProvider()
-    )
+    return this._firebaseAuth.auth.signInWithEmailAndPassword( email, password )
   }
 
   estaLogeado() {

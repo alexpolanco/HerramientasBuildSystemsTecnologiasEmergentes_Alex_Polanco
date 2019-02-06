@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+//import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AuthService } from './auth.service';
@@ -12,6 +14,8 @@ import { InicioComponent } from './inicio/inicio.component';
 
 import { FlashMessagesModule } from 'angular2-flash-messages';
 import { FlashMessagesService } from 'angular2-flash-messages';
+import { HttpService } from './http.service';
+import { shareReplay } from 'rxjs/operators';
 
 import { environment } from '../environments/environment';
 import { AngularFireModule } from 'angularfire2';
@@ -36,6 +40,7 @@ import { NoEncontradoComponent } from './no-encontrado/no-encontrado.component';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     FormsModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase, 'angular-auth-firebase'),
@@ -44,7 +49,7 @@ import { NoEncontradoComponent } from './no-encontrado/no-encontrado.component';
     ReactiveFormsModule,
     FlashMessagesModule
   ],
-  providers: [AuthService, AuthGuardService, FlashMessagesService],
+  providers: [AuthService, AuthGuardService, FlashMessagesService, HttpService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,10 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit  } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
-import { FormGroup, FormControl } from '@angular/forms';
-
-import { FlashMessagesService } from 'angular2-flash-messages';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -12,34 +10,37 @@ import { FlashMessagesService } from 'angular2-flash-messages';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  formLogin: FormGroup;
+  enviado = false;
   titulo = "Inicia Sesión";
-  public email: string;
-  public password: string;
+  //email: string;
+  //password: string;
 
-  constructor(private authServicio: AuthService, private ruta: Router, public flashMensaje: FlashMessagesService) {}
+  constructor(private authServicio: AuthService,
+                private ruta: Router) {}
 
   ngOnInit() {
+    this.formLogin = new FormGroup({
+            'email': new FormControl('', [Validators.required, Validators.email]),
+            'password': new FormControl('', [Validators.required])
+        });
   }
 
-  procesarFormularioLogin(form) {
-    this.authServicio.iniciarSesion(this.email, this.password)
+  get f() { return this.formLogin.controls; }
+
+  procesarFormularioLogin() {
+    this.enviado = true;
+    if (this.formLogin.invalid) {
+      return;
+    }
+    this.authServicio.iniciarSesion(email.value, password.value)
     .then( (res) => {
       console.log(res);
-      this.flashMensaje.show('Usuario logado correctamente.', {cssClass: 'alert-success', timeout: 4000});
       this.ruta.navigate(['inicio']);
     }).catch((err) => {
-      console.log('error: ' + err);
-      this.flashMensaje.show(err.message, {cssClass: 'alert-danger', timeout: 4000});
+      console.log(err);
       this.ruta.navigate(['login']);
     });
-  }
-
-  iniciarSesionConGoogle() {
-    this.authServicio.iniciarSesionConGoogle()
-    .then((res) => {
-        this.ruta.navigate(['inicio'])
-      })
-    .catch((err) => console.log(err));
   }
 
 }

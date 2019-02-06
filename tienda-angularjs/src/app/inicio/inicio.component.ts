@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
-//import { BarraSuperiorComponent } from './barra-superior.component';
-
-import { FlashMessagesService } from 'angular2-flash-messages';
 
 @Component({
   selector: 'app-inicio',
@@ -11,10 +8,8 @@ import { FlashMessagesService } from 'angular2-flash-messages';
 })
 export class InicioComponent implements OnInit {
 
-  constructor(private authServicio: AuthService, private flashMensaje: FlashMessagesService) { }
+  constructor(private authServicio: AuthService) { }
 
-  ngOnInit() {
-    ///this.flashMensaje.show('Bienvenido!', { cssClass: 'alert-success', timeout: 5000 });
-  }
+  ngOnInit() {}
 
 }
